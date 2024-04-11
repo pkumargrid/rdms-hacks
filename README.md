@@ -4,33 +4,21 @@
 
 ### Case Description
 
-In this task, we aim to demonstrate how the database state can become inconsistent due to concurrent transactions.
-
-### Implementation
-
-- **Database Schema**:
-  - Tables: `admin`, `health_care_provider`, `doctor`
-  - See the `Initialize` class in the `initializing.layer.database` package for schema initialization.
-- **Dummy Data**:
-  - Refer to the `Insert` class for populating the tables with dummy values.
-- **Transactions**:
-  - **Thread1**:
-    - Updates the email of the doctor with id 1 to 'doctor_thread1@gmail.com'.
-  - **Thread2**:
-    - Updates the email of the doctor with id 1 to 'doctor_thread2@gmail.com'.
-  - Both transactions have the isolation level set to `READ_COMMITTED`.
+In this task, we aim to demonstrate how the database state can become inconsistent due to non-transactional behaviour.
 
 ### Behavior
 
-Due to the concurrent nature of transactions, the system may not guarantee the order in which transactions commit, leading to inconsistency in the database state.
+- Thread1 attempts to insert a new record with a new ID.
+- An arithmetic exception occurs during the transaction.
+- The transaction is rolled back, and the attempted changes are reverted.
+- Thread1's attempt to delete the ID after the exception fails due to the rollback.
+- Thread4 attempts to update the same record as Thread1, but its changes are also rolled back due to Thread1's rollback.
+- In non-transactional behaviour, Thread3 operates without using transactions and eventually allows Thread4 to successfully update the record.
 
-### Non-Transactional Scenario
+### Conclusion
 
-- **Thread3**:
-  - Performs intensive work and fails before completing the transaction due to an arithmetic exception.
-  - Inserts a new record into the `doctor` table.
-- **Thread4**:
-  - Attempts to work with the record added by Thread3 but cannot due to the failure of Thread3.
+This scenario highlights the importance of proper transaction management and handling exceptions to ensure database consistency and integrity in multi-threaded environments.
+
 
 ## Task 2: Non-Default Transaction Isolation Levels
 

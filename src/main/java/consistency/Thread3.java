@@ -14,12 +14,16 @@ public class Thread3 extends Thread {
             connection = DriverManager.getConnection(DB_URL.value, USER_NAME.value, USER_PASSWORD.value);
             try(Statement statement = connection.createStatement()) {
                 //done lot of job
-                int a = 1/0;
                 final String change = """
                         INSERT INTO doctor (name, email, password, health_care_provider_id) VALUES
                         ('Doctor3', 'doctor3@example.com', 'doctorpassword3', 1);
                         """;
                 statement.executeUpdate(change);
+                int a = 1/0;
+                final String update = """
+                        delete from doctor where id = %d
+                        """.formatted(3);
+                statement.executeUpdate(update);
             }
         } catch (SQLException e) {
             e.printStackTrace();

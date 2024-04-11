@@ -1,6 +1,7 @@
 import consistency.*;
 import initializing.layer.Index;
 import initializing.layer.Initialize;
+import initializing.layer.Insert;
 
 import java.sql.SQLException;
 
@@ -12,23 +13,25 @@ public class Main {
          * and Insert.insert()
          * if table and dummy values are not inserted
          */
+//        Initialize.init();
+//        Insert.insert();
         //When using transaction
 //        Thread1 thread1 = new Thread1();
 //        Thread2 thread2 = new Thread2();
 //        thread1.start();
-//        thread2.start();
 //        thread1.join();
+//        thread2.start();
 //        thread2.join();
 
         //when not using transaction
-//        Thread3 thread3 = new Thread3();
-//        thread3.setName("thread3");
-//        Thread4 thread4 = new Thread4();
-//        thread4.setName("Thread4");
-//        thread3.start();
-//        thread4.start();
-//        thread3.join();
-//        thread4.join();
+        Thread3 thread3 = new Thread3();
+        thread3.setName("thread3");
+        Thread4 thread4 = new Thread4();
+        thread4.setName("Thread4");
+        thread3.start();
+        thread3.join();
+        thread4.start();
+        thread4.join();
 
         //default transaction issue - repeatable read
 //        Thread5 thread5 = new Thread5();

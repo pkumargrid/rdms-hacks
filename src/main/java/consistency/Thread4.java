@@ -15,15 +15,9 @@ public class Thread4 extends Thread {
             connection.setAutoCommit(false);
             connection.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
             try(Statement statement = connection.createStatement()) {
-                final String retrieve = """ 
-                select id from doctor where id = 3;
-                """;
-                ResultSet resultSet = statement.executeQuery(retrieve);
-                resultSet.next();
-                int id = resultSet.getInt(1);
                 final String change = """
                         update doctor set email = 'doctor_thread4@gmail.com' where id = %d
-                        """.formatted(id);
+                        """.formatted(3);
                 statement.executeUpdate(change);
                 connection.commit();
             }

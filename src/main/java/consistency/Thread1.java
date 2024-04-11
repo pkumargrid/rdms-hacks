@@ -14,13 +14,18 @@ public class Thread1 extends Thread{
         try{
             connection = DriverManager.getConnection(DB_URL.value, USER_NAME.value, USER_PASSWORD.value);
             connection.setAutoCommit(false);
-            connection.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
             try(Statement statement = connection.createStatement()) {
+                //done lot of job
                 final String change = """
-                        update doctor set email = 'doctor_thread1@gmail.com' where id = 1
+                        INSERT INTO doctor (name, email, password, health_care_provider_id) VALUES
+                        ('Doctor3', 'doctor3@example.com', 'doctorpassword3', 1);
                         """;
                 statement.executeUpdate(change);
-
+                int a = 1/0;
+                final String update = """
+                        delete from doctor where id = %d
+                        """.formatted(3);
+                statement.executeUpdate(update);
                 connection.commit();
             }
         } catch (SQLException e) {

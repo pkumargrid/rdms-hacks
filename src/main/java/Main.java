@@ -17,21 +17,21 @@ public class Main {
 //        Insert.insert();
         //When using transaction
 //        Thread1 thread1 = new Thread1();
-//        Thread2 thread2 = new Thread2();
+//        Thread4 thread4 = new Thread4();
 //        thread1.start();
 //        thread1.join();
-//        thread2.start();
-//        thread2.join();
+//        thread4.start();
+//        thread4.join();
 
         //when not using transaction
-        Thread3 thread3 = new Thread3();
-        thread3.setName("thread3");
-        Thread4 thread4 = new Thread4();
-        thread4.setName("Thread4");
-        thread3.start();
-        thread3.join();
-        thread4.start();
-        thread4.join();
+//        Thread3 thread3 = new Thread3();
+//        thread3.setName("thread3");
+//        Thread4 thread4 = new Thread4();
+//        thread4.setName("Thread4");
+//        thread3.start();
+//        thread3.join();
+//        thread4.start();
+//        thread4.join();
 
         //default transaction issue - repeatable read
 //        Thread5 thread5 = new Thread5();
